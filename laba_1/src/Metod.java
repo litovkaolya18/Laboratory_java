@@ -1,7 +1,4 @@
 import java.util.Scanner;
-/**
- * Класс, содержащий различные математические методы.
- */
 public class Metod {
     /**
      * Метод для получения дробной части.
@@ -10,7 +7,7 @@ public class Metod {
      * @return дробная часть числа
      */
     public double fraction(double x) { //номер 1.1
-        double fractional_part = x % 1;
+        double fractional_part = x - (int)x;
         return fractional_part;
     }
 
@@ -130,7 +127,12 @@ public class Metod {
      * @return модуль числа
      */
     public int abs(int x) { //номер 2.1
-        int module = Math.abs(x);
+        int module;
+        if (x >= 0) {
+            module = x;
+        } else {
+            module = -x;
+        }
         System.out.print("Модуль числа x: ");
         return module;
     }
@@ -314,7 +316,9 @@ public class Metod {
      * Метод возвращающий индекс первого вхождения числа x в массив arr.
      * Если число не входит в массив - возвращается -1.
      *
-     * @param x высота треугольника
+     * @param arr массив, в котором осуществляется поиск
+     * @param x число, которое нужно найти в массиве
+     * @return индекс первого вхождения числа x или -1, если число не найдено
      */
     public int findFirst(int[] arr, int x) { //номер 4.1
         System.out.print("Полученный массив: [");
@@ -330,5 +334,49 @@ public class Metod {
             }
         }
         return -1;
+    }
+
+    /**
+     * Метод возвращает наибольшее по модулю (то есть без учета знака) значение массива arr
+     *
+     * @param arr массив, в котором осуществляется поиск
+     * @return наибольшее по модулю значение из массива
+     */
+    public int maxAbs (int[] arr) {
+        int maxAbsValue = arr[0];
+
+        System.out.print("Полученный массив: [");
+        for (int i = 0; i < arr.length; i++)
+        {
+            System.out.print( arr[i] + " ");
+            int current = arr[i];
+
+            int currentAbs;
+            if (current < 0) {
+                currentAbs = -current;
+            } else {
+                currentAbs = current;
+            }
+            // Вычисляем модуль текущего максимального
+            int maxAbs;
+            if (maxAbsValue < 0) {
+                maxAbs = -maxAbsValue;
+            } else {
+                maxAbs = maxAbsValue;
+            }
+
+            // Сравниваем модули
+            if (currentAbs > maxAbs) {
+                maxAbsValue = current;
+            } else if (currentAbs == maxAbs) {
+                // При равных модулях выбираем отрицательное значение
+                if (current < 0) {
+                    maxAbsValue = current;
+                }
+            }
+        }
+        System.out.print("]\n");
+
+        return maxAbsValue;
     }
 }

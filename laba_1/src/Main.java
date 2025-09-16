@@ -22,7 +22,8 @@ public class Main {
                     "14 - Метод выводит квадрат из символов '*' размера x на x\n" +
                     "15 - Метод выводит треугольник из символов '*' с высотой x, и совпадает с номером строки\n" +
                     "в ряду, выровненный по правому краю\n" +
-                    "16 - Метод возвращающий индекс первого вхождения числа x в массив arr\n");
+                    "16 - Метод возвращающий индекс первого вхождения числа x в массив arr\n" +
+                    "17 - Метод возвращает наибольшее по модулю (то есть без учета знака) значение массива arr\n");
             System.out.print("Введите номер задания: ");
             Scanner scanner = new Scanner(System.in);
             Metod metod = new Metod();
@@ -178,6 +179,20 @@ public class Main {
                         System.out.print("Число " + x + " не найдено в массиве\n");
                     }
                     break;
+                }
+                case 17: {
+                    int x, n;
+                    System.out.print("Введите размер массива: ");
+                    n = scanner.nextInt();
+                    int[] arr = new int[n];
+                    System.out.println("Введите " + n + " элементов массива через пробел: ");
+
+                    for (int i = 0; i < n; i++) {
+                        arr[i] = scanner.nextInt();
+                    }
+
+                    int result = metod.maxAbs(arr);
+                    System.out.println("Наибольшее по модулю значение: " + result);
                 }
             }
         }
