@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.lang.*;
-
+import java.text.DecimalFormat;
+/**
+ * Класс Main - лабораторная номер 1
+ */
 public class Main {
     public static void main(String[] args) {
         int number;
@@ -31,9 +34,12 @@ public class Main {
 
             switch (number) {
                 case 1: {
-                    double x = metod.foolTest();
+                    double x;
+                    System.out.print("Введите вещественное число x (через запятую): ");
+                    x = scanner.nextDouble();
                     double fractional_part = metod.fraction(x);
-                    System.out.printf("Дробная часть числа: %f%n", fractional_part);
+                    DecimalFormat df = new DecimalFormat("0.######");
+                    System.out.println("Дробная часть числа: " + df.format(fractional_part));
                     break;
                 }
                 case 2: {
@@ -41,12 +47,14 @@ public class Main {
                     System.out.print("Введите символ x от 0 до 9: ");
                     x = scanner.next().charAt(0);
                     int Num = metod.charToNum(x);
-                    System.out.print("Символ " + x + " преобразован в число: " + Num + " по таблице ASCII");
+                    if (Num != -1){
+                        System.out.print("Символ " + x + " преобразован в число: " + Num + " по таблице ASCII");
+                    }
                     break;
                 }
                 case 3: {
                     int x;
-                    System.out.print("Введите любое число x: ");
+                    System.out.print("Введите число x (можно как положительное так и отрицательное): ");
                     x = scanner.nextInt();
                     boolean is2Digit = metod.is2Digits(x);
                     System.out.print(is2Digit);

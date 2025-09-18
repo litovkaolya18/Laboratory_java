@@ -12,29 +12,6 @@ public class Metod {
     }
 
     /**
-     * Метод для проверки и получения корректного вещественного числа.
-     *
-     * @return корректное вещественное число
-     */
-    public double foolTest() { //проверка
-        Scanner scanner = new Scanner(System.in);
-        double x = 0;
-        boolean validInput = false;
-
-        while (!validInput) {
-            System.out.print("Введите вещественное число x (через запятую): ");
-            if (scanner.hasNextDouble()) {  //для возвращения true or false для проверки
-                x = scanner.nextDouble();
-                validInput = true;
-            } else {
-                System.out.print("Ошибка: не корректный ввод данных\n");
-                scanner.next(); // для очистки неверного ввода
-            }
-        }
-        return x;
-    }
-
-    /**
      * Метод перевода символа цифры в число по таблице ASCII.
      *
      * @param x символ цифры
@@ -45,8 +22,8 @@ public class Metod {
             return x - '0'; //преобразует символ в число
         } else {
             System.out.print("Error: x не входит в диапазон от 0 до 9");
+            return -1;
         }
-        return x;
     }
 
     /**
@@ -57,14 +34,14 @@ public class Metod {
      */
     public boolean is2Digits(int x) { //номер 1.5
         System.out.print("Число является двухзначным?\n");
-        if ((x >= 10) & (x < 100)) {
-            boolean twoDidits = true;
-            return twoDidits;
+        boolean twoDidits;
+        if (((x >= 10) & (x <= 99)) || ((x <= -10) & (x >= -99))) {
+           twoDidits = true;
         }
         else{
-            boolean notTwoDidits = false;
-            return notTwoDidits;
+           twoDidits = false;
         }
+        return twoDidits;
     }
 
     /**
@@ -186,13 +163,12 @@ public class Metod {
      */
     public int sum2(int x, int y) { //номер 2.7
         int sum = x + y;
-        int resultSum = sum;
-        if ((resultSum >= 10) & (resultSum <=19)) {
-            resultSum = 20;
+        if ((sum >= 10) & (sum <=19)) {
+             sum = 20;
         } else {
-            resultSum = sum;
+            sum = x + y;
         }
-        return resultSum;
+        return sum;
     }
 
     /**
