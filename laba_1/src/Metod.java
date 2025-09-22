@@ -206,10 +206,13 @@ public class Metod {
      */
     public String listNums (int x) { //номер 3.1
         String res = "";
-        for (int i = 0; i <= x; i++) {
-            res += i;
-            if (i < x){
-                res += " ";
+        if (x > 0) {
+            for (int i = 0; i <= x; i++) {
+                res += i + " ";
+            }
+        } else {
+            for (int i = 0; i >= x; i--) {
+                res += i + " ";
             }
         }
         return res;
@@ -223,10 +226,13 @@ public class Metod {
      */
     public String chet (int x) { //номер 3.3
         String chNum = "";
-        for (int i = 0; i <= x; i += 2){
-             chNum += i;
-             if (i < x){
-                 chNum += " ";
+        if (x > 0) {
+            for (int i = 0; i <= x; i += 2) {
+                chNum += i + " ";
+            }
+        } else {
+            for (int i = 0; i >= x; i -= 2) {
+                 chNum += i + " ";
              }
         }
         return chNum;
@@ -310,6 +316,7 @@ public class Metod {
             }
         }
         return -1;
+
     }
 
     /**
@@ -318,7 +325,7 @@ public class Metod {
      * @param arr массив, в котором осуществляется поиск
      * @return наибольшее по модулю значение из массива
      */
-    public int maxAbs (int[] arr) {
+    public int maxAbs (int[] arr) { //номер 4.3
         int maxAbsValue = arr[0];
 
         System.out.print("Полученный массив: [");
@@ -354,5 +361,45 @@ public class Metod {
         System.out.print("]\n");
 
         return maxAbsValue;
+    }
+
+    /**
+     * Добавление массива в массив
+     *
+     *
+     */
+    public int[] add (int[] arr, int[] ins, int pos) { //номер 4.5
+        System.out.print("Полученный массив Arr: [");
+        for (int i = 0; i < arr.length; i++)
+        {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("]\n");
+
+        System.out.print("Полученный массив Ins: [");
+        for (int i = 0; i < ins.length; i++)
+        {
+            System.out.print(ins[i] + " ");
+        }
+        System.out.print("]\n");
+
+        int[] res = new int[arr.length + ins.length];
+        System.out.println("Соединения массивов с позиции pos " + pos);
+
+        //копируем элемент до позиции вставки
+        for (int i = 0; i < pos; i++){
+            res[i] = arr[i];
+        }
+
+        //вставляем элемент из ins
+        for (int i = 0; i < ins.length; i++) {
+            res[pos + i] = ins[i];
+        }
+
+        //копируем оставшееся из arr
+        for (int i = pos; i < arr.length; i++) {
+            res[ins.length + i] = arr[i];
+        }
+        return res;
     }
 }

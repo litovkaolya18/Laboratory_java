@@ -185,22 +185,55 @@ public class Main {
                         System.out.print("Первое вхождение числа " + x + " найдено на позиции: " + array + " (отсчёт с нуля)\n");
                     } else {
                         System.out.print("Число " + x + " не найдено в массиве\n");
+                        System.out.print("-1\n");
                     }
                     break;
                 }
                 case 17: {
-                    int x, n;
+                    int  n;
                     System.out.print("Введите размер массива: ");
                     n = scanner.nextInt();
                     int[] arr = new int[n];
                     System.out.println("Введите " + n + " элементов массива через пробел: ");
-
                     for (int i = 0; i < n; i++) {
                         arr[i] = scanner.nextInt();
                     }
 
                     int result = metod.maxAbs(arr);
                     System.out.println("Наибольшее по модулю значение: " + result);
+                }
+                case 18: {
+                    int  size1;
+                    System.out.print("Введите размер массива Arr: ");
+                    size1 = scanner.nextInt();
+                    int[] arr = new int[size1];
+                    System.out.println("Введите " + size1 + " элементов массива Arr через пробел: ");
+                    for (int i = 0; i < size1; i++) {
+                        arr[i] = scanner.nextInt();
+                    }
+
+                    int  size2;
+                    System.out.print("Введите размер массива Ins: ");
+                    size2 = scanner.nextInt();
+                    int[] ins = new int[size2];
+                    System.out.println("Введите " + size2 + " элементов массива Ins через пробел: ");
+                    for (int i = 0; i < size2; i++) {
+                        ins[i] = scanner.nextInt();
+                    }
+
+                    System.out.print("С какой позиции массива Arr, вы бы хотели соеденить массив Ins?\n ");
+                    System.out.println("Ведите число от 1 до " + (size1 + 1));
+                    int place = scanner.nextInt();
+                    while (place < 1 || place > (size1 + 1)) {
+                        System.out.println("Ведите число от 1 до " + (size1 + 1));
+                        place = scanner.nextInt();
+                    }
+                    int[] arrRes = metod.add(arr, ins, place);
+
+                    for (int j = 0; j < size1 + size2; j++) {
+                        System.out.println(arrRes[j] + " ");
+                    }
+                    break;
                 }
             }
         }
