@@ -1,0 +1,92 @@
+import java.util.Scanner;
+public class Time {
+    /**
+     * Свойства
+     */
+    private int seconds;
+
+    /**
+     * Конструктор для ввода данных с клавиатуры
+     */
+    public Time() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите количество секунд: ");
+        this.seconds = scanner.nextInt();
+    }
+    public Time(int seconds) {
+        this.seconds = seconds;
+    }
+
+    /**
+     * Конструктор для создания времени из часов, минут и секунд.
+     *
+     * @param hours часы
+     * @param minutes минуты
+     * @param seconds секунды
+     */
+    public Time(int hours, int minutes, int seconds) {
+        this.seconds = hours * 3600 + minutes * 60 + seconds;
+    }
+
+    public int getSeconds() {
+        return seconds;
+    }
+
+
+    /**
+     * Возвращает текущий час (0-23)
+     */
+    public int getHours() {
+        int totalSeconds = seconds % (24 * 3600);
+        return totalSeconds / 3600;
+    }
+
+    /**
+     * Возвращает минуты с начала текущего часа (0-59)
+     */
+    public int getMinutes() {
+        int totalSeconds = seconds % (24 * 3600);
+        int remainingSeconds = totalSeconds % 3600;
+        return remainingSeconds / 60;
+    }
+
+    /**
+     * Возвращает секунды с начала текущей минуты (0-59)
+     */
+    public int getSecondsFromMinute() {
+        int totalSeconds = seconds % (24 * 3600);
+        return totalSeconds % 60;
+    }
+
+
+    /**
+     * Преобразует время в текстовую форму формата "ЧЧ:ММ:СС".
+     * Если время превышает 24 часа, отображается время с начала последних суток.
+     *
+     * @return строковое представление времени
+     */
+    @Override
+    public String toString() {
+       int limit = seconds % (24 * 3600);
+
+       int hours = limit / 3600;
+       int minutes = (limit % 3600) / 60;
+       int seconds = limit % 60;
+
+       String res = hours + ":";
+
+       if (minutes < 10) {
+           res = res + "0" + minutes + ":";
+       } else {
+           res = res + minutes + ":";
+       }
+
+       if (seconds < 10) {
+           res = res + "0" + seconds;
+       } else {
+           res = res + seconds;
+       }
+
+        return res;
+    }
+}
