@@ -43,6 +43,7 @@ public class Main {
                 }
                 case 2: {
                     System.out.println("\nПримеры из условия задачи");
+                    System.out.println("\nПримеры из 1-го задания:");
                     Time time1 = new Time(10);
                     Time time2 = new Time(10000);
                     Time time3 = new Time(100000);
@@ -53,27 +54,60 @@ public class Main {
                     System.out.println("100000 секунд: " + time3.toString());
                     System.out.println("91800 секунд: " + time4.toString());
 
+                    //для задания 5 (4.4)
+                    System.out.println("\nПримеры из 2-го задания:");
+                    Time time5 = new Time(2,3,5);
+                    System.out.println("2 часа, 3 минуты, 5 секунд: " + time5.toString());
 
-                    //Time time5 = new Time(2,3,5);
-                    //System.out.print("2 часа, 3 минуты, 5 секунд: " + time5.toString());
+                    //для задания 6 (5.4)
+                    System.out.println("\nПримеры из 3-го задания:");
+                    Time time6 = new Time(34056);
+                    Time time7 = new Time(4532);
+                    Time time8 = new Time(123);
+
+                    //1. Какой сейчас час?
+                    System.out.print("1. Время 34056 секунд:\n");
+                    System.out.print("Часов: " + time6.getHours() + "\n");
+                    System.out.print("Полное время: " + time6.toString() + "\n");
+
+                    //2. Сколько минут прошло с начало текущего часа?
+                    System.out.print("2. Время 4532 секунд:\n");
+                    System.out.print("Минут с начала часа: " + time7.getMinutes() + "\n");
+                    System.out.print("Полное время: " + time7.toString() + "\n");
+
+                    //3. Сколько секунд прошло с начало текущей минуты?
+                    System.out.print("2. Время 123 секунд:\n");
+                    System.out.print("Секунды с начала минут: " + time8.getSecondsFromMinute() + "\n");
+                    System.out.print("Полное время: " + time8.toString() + "\n");
+
 
                     System.out.println("\nСпособы создания времени:");
                     System.out.println("1 - из секунд");
                     System.out.println("2 - из часов, минут, секунд");
+                    System.out.print("3 - Получение компонентов времени\n");
+
                     int choice = validator.getNumInput("Выберете цифру: ");
 
                     if (choice == 1) {
                         int user = validator.getNumInput("Введите количество секунд: ");
                         user = Check.getCheckNum(user);
-                        Time userTime = new Time(user);
-                        System.out.print(userTime.toString() + "\n");
+                        Time userTime1 = new Time(user);
+                        System.out.print(userTime1.toString() + "\n");
                     } else if (choice == 2) {
                         int hours = validator.getNumInput("Введите часы: ");
                         int minutes = validator.getNumInput("Введите минуты: ");
                         int seconds = validator.getNumInput("Введите секунды: ");
 
-                        Time userTime = new Time(hours, minutes, seconds);
-                        System.out.println(userTime.toString());
+                        Time userTime2 = new Time(hours, minutes, seconds);
+                        System.out.println(userTime2.toString());
+                    } else if (choice == 3) {
+                        int totalSeconds = validator.getNumInput("Введите общее количество секунд: ");
+                        Time userTime3 = new Time(totalSeconds);
+                        System.out.println("Компоненты времени " + totalSeconds + " секунд:");
+                        System.out.println("Часов: " + userTime3.getHours());
+                        System.out.println("Минут с начала часа: " + userTime3.getMinutes());
+                        System.out.println("Секунд с начала минуты: " + userTime3.getSecondsFromMinute());
+                        System.out.println("Полное время: " + userTime3.toString());
                     } else {
                         System.out.println("Неверный выбор!");
                     }
