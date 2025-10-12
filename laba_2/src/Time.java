@@ -1,18 +1,30 @@
 import java.util.Scanner;
+
+/**
+ * Класс Time представляет сущность 'Время' в 24-часовом формате.
+ * Время описывается числом секунд, прошедшим с начала суток.
+ */
 public class Time {
+
     /**
-     * Свойства
+     * Свойства: количество секунд с начала суток.
      */
     private int seconds;
 
     /**
-     * Конструктор для ввода данных с клавиатуры
+     * Конструктор для ввода данных с клавиатуры.
      */
     public Time() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите количество секунд: ");
         this.seconds = scanner.nextInt();
     }
+
+    /**
+     * Конструктор для создания времени из секунд.
+     *
+     * @param seconds количество секунд с начала суток
+     */
     public Time(int seconds) {
         this.seconds = seconds;
     }
@@ -58,7 +70,6 @@ public class Time {
         return totalSeconds % 60;
     }
 
-
     /**
      * Преобразует время в текстовую форму формата "ЧЧ:ММ:СС".
      * Если время превышает 24 часа, отображается время с начала последних суток.
@@ -86,7 +97,6 @@ public class Time {
        } else {
            res = res + seconds;
        }
-
         return res;
     }
 }

@@ -1,11 +1,9 @@
 import java.util.Scanner;
 /**
  * Класс Name представляет сущность 'Имя' с фамилией, именем и отчеством
- *
  * Не заданные параметры не учитываются при приведении к текстовому виду
  */
 public class Name {
-    Scanner scanner = new Scanner(System.in);
     /**
      * Свойства
      */
@@ -14,20 +12,46 @@ public class Name {
     private String patronymic;
 
     /**
-     * Конструктор для ввода данных с клавиатуры
+     * Конструктор по умолчанию
+     * для ввода данных с клавиатуры
      */
     public Name() {
-        System.out.print("Введите фамилию: ");
-        this.lastName = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        Check validator = new Check(scanner);
 
-        System.out.print("Введите имя: ");
-        this.firstName = scanner.nextLine();
+        while (true) {
+            System.out.print("Введите фамилию: ");
+            this.lastName = scanner.nextLine().trim();
+            if (this.lastName.isEmpty() || validator.checkLetters(this.lastName)) {
+                break;
+            } else {
+                System.out.println("Error: фамилия должна содержать только буквы");
+            }
+        }
 
-        System.out.print("Введите отчество: ");
-        this.patronymic = scanner.nextLine();
+        while (true) {
+            System.out.print("Введите имя: ");
+            this.firstName = scanner.nextLine().trim();
+            if (this.firstName.isEmpty() || validator.checkLetters(this.firstName)) {
+                break;
+            } else {
+                System.out.println("Error: имя должна содержать только буквы");
+            }
+        }
+
+        while (true) {
+            System.out.print("Введите отчество: ");
+            this.patronymic = scanner.nextLine().trim();
+            if (this.patronymic.isEmpty() || validator.checkLetters(this.patronymic)) {
+                break;
+            } else {
+                System.out.println("Error: отчество должна содержать только буквы");
+            }
+        }
     }
     /**
-     * Конструктор для готовых имен
+     * Конструктор с параметрами
+     * для готовых имен
      *
      * @param lastName фамилия
      * @param firstName имя
@@ -42,14 +66,19 @@ public class Name {
     public String getLastName() {
         return lastName;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public String getPatronymic() {
         return patronymic;
     }
 
-    //метод
+    /**
+     * Преобразует имя к строковому виду.
+     * @return строка в формате 'Фамилия Имя Отчество'
+     */
     @Override
     public String toString() {
         String res = "";

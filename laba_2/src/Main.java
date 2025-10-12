@@ -7,15 +7,15 @@ import java.text.DecimalFormat;
 public class Main {
     public static void main(String[] args) {
         int number;
+        Check validator = new Check(); //для проверок
 
         while (true) {
             System.out.print("\n" + "Здравствуй! Выбери одно из заданий:\n");
             System.out.print("1 - Создание ФИО\n" +
                     "2 - Создание Времени\n" +
                     "3 - Создание Сотрудников и их отделов\n");
-            System.out.print("Введите номер задания: ");
             Scanner scanner = new Scanner(System.in);
-            number = scanner.nextInt();
+            number = validator.getNumInput("Введите номер задания: ");
 
             switch (number) {
                 case 1: {
@@ -28,16 +28,14 @@ public class Main {
                     System.out.println("2. " + num2.toString());
                     System.out.println("3. " + num3.toString() + "\n");
 
-                    int count;
-                    System.out.print("Введите число сколько ФИО вы хотите создать: ");
-                    count = scanner.nextInt();
+                    int count = validator.getNumInput("Введите число сколько ФИО вы хотите создать: ");
                     count = Check.getCheckNum(count);
 
                     String allNames = "";
                     for (int i = 0 ; i < count; i++) {
                         System.out.print("Создание " + (i+1) + " ФИО\n");
-                        Name name = new Name();
-                        allNames += (i+1) + ". " + name.toString() + "\n";
+                        Name user = new Name();
+                        allNames += (i+1) + ". " + user.toString() + "\n";
                     }
                     System.out.print("Создано: \n");
                     System.out.print(allNames);
@@ -56,29 +54,23 @@ public class Main {
                     System.out.println("91800 секунд: " + time4.toString());
 
 
-                    Time time5 = new Time(2,3,5);
-                    System.out.print("2 часа, 3 минуты, 5 секунд: " + time5.toString());
+                    //Time time5 = new Time(2,3,5);
+                    //System.out.print("2 часа, 3 минуты, 5 секунд: " + time5.toString());
 
                     System.out.println("\nСпособы создания времени:");
                     System.out.println("1 - из секунд");
                     System.out.println("2 - из часов, минут, секунд");
-                    System.out.print("Выберете цифру: ");
-                    int choice = scanner.nextInt();
+                    int choice = validator.getNumInput("Выберете цифру: ");
 
                     if (choice == 1) {
-                        int user;
-                        System.out.print("Введите количество секунд: ");
-                        user = scanner.nextInt();
+                        int user = validator.getNumInput("Введите количество секунд: ");
                         user = Check.getCheckNum(user);
                         Time userTime = new Time(user);
                         System.out.print(userTime.toString() + "\n");
                     } else if (choice == 2) {
-                        System.out.print("Введите часы: ");
-                        int hours = scanner.nextInt();
-                        System.out.print("Введите минуты: ");
-                        int minutes = scanner.nextInt();
-                        System.out.print("Введите секунды: ");
-                        int seconds = scanner.nextInt();
+                        int hours = validator.getNumInput("Введите часы: ");
+                        int minutes = validator.getNumInput("Введите минуты: ");
+                        int seconds = validator.getNumInput("Введите секунды: ");
 
                         Time userTime = new Time(hours, minutes, seconds);
                         System.out.println(userTime.toString());
