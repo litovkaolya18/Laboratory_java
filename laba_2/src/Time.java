@@ -78,11 +78,9 @@ public class Time {
      */
     @Override
     public String toString() {
-       int limit = seconds % (24 * 3600);
-
-       int hours = limit / 3600;
-       int minutes = (limit % 3600) / 60;
-       int seconds = limit % 60;
+        int hours = getHours();
+        int minutes = getMinutes();
+        int seconds = getSecondsFromMinute();
 
        String res = hours + ":";
 
