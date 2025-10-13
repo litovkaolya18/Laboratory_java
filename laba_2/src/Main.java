@@ -164,7 +164,6 @@ public class Main {
                         System.out.println(userEmployees[i].toString());
                     }
 
-                    //
                     /* Просмотр списка отдела через конкретного сотрудника */
                     if (count > 0) {
                         int viewIndex = validator.getNumInput("Введите номер сотрудника, чтобы узнать список его отдела: ");
@@ -172,7 +171,6 @@ public class Main {
                             System.out.print("Неверно. Введите номер от 1 до " + count + ": ");
                             viewIndex = scanner.nextInt();
                         }
-
                         System.out.println("\nСписок сотрудников отдела через " + userEmployees[viewIndex - 1].getName() + ":");
                         System.out.println(userEmployees[viewIndex - 1].getDepartmentEmployees());
                     }

@@ -3,9 +3,9 @@
  * Отдел имеет название, начальника и список сотрудников.
  */
 public class Department {
+    /* Название отдела */
     private final String name;
     private Employees  director;
-    //
     private final Employees[] employees;
     private int count;
 
@@ -16,8 +16,7 @@ public class Department {
      */
     public Department(String name) {
         this.name = name;
-        //
-         /* массив на 100 сотрудников */
+        /* массив на 100 сотрудников */
         this.employees = new Employees[100];
         this.count = 0;
     }
@@ -30,7 +29,6 @@ public class Department {
         return director;
     }
 
-    //
     /**
      * Устанавливает начальника отдела.
      *
@@ -39,7 +37,7 @@ public class Department {
     public  void setDirector(Employees director) {
         this.director = director;
     }
-    //
+
     /**
      * Добавляет сотрудника в отдел.
      *
@@ -54,6 +52,7 @@ public class Department {
                     return;
                 }
             }
+            /* Добавляем сотрудника */
             employees[count] = employee;
             count++;
         }
@@ -86,7 +85,6 @@ public class Department {
         return count;
     }
 
-    /// ////
     /**
      * Возвращает сотрудника по индексу.
      *

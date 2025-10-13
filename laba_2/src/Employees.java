@@ -5,13 +5,13 @@ import java.util.Scanner;
  * Сотрудник описывается именем и отделом, в котором работает
  */
 public class Employees {
-    /* Отдел */
+    /*  Имя сотрудника */
     private final String name;
-    /* Начальник */
+    /* Отдел, в котором работает */
     private final Department department;
 
     /**
-     * Конструктор для создания сотрудника с готовыми данными.
+     * Конструктор для создания сотрудника с готовыми данными
      *
      * @param name имя сотрудника
      * @param department отдел сотрудника
@@ -19,7 +19,7 @@ public class Employees {
     public Employees(String name, Department department) {
         this.name = name;
         this.department = department;
-        //
+        // автоматически добавляем сотрудника в отдел
         department.addEmployee(this);
     }
 
@@ -32,7 +32,6 @@ public class Employees {
         Scanner scanner = new Scanner(System.in);
         Check validator = new Check();
 
-        //this.name = scanner.nextLine();
         while (true) {
             System.out.print("Введите имя сотрудника: ");
             String inputName = scanner.nextLine().trim();
@@ -43,7 +42,6 @@ public class Employees {
                 System.out.println("Error: имя должно содержать только буквы!");
             }
         }
-
         this.department = department;
         //
         department.addEmployee(this);
@@ -51,10 +49,6 @@ public class Employees {
 
     public String getName() {
         return name;
-    }
-
-    public Department getDepartment() {
-        return department;
     }
 
     /**
