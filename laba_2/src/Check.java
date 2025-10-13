@@ -82,5 +82,25 @@ public class Check {
             }
         }
     }
+
+
+    /**
+     * Универсальный метод для ввода букв с сообщением.
+     *
+     * @param prompt сообщение для пользователя
+     * @param allowEmpty разрешить пустые значения
+     * @return проверенная строка
+     */
+    public String getLettersInput(String prompt, boolean allowEmpty) {
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine().trim();
+            if ((allowEmpty && input.isEmpty()) || checkLetters(input)) {
+                return input;
+            } else {
+                System.out.println("Ошибка: должно содержать только буквы!");
+            }
+        }
+    }
 }
 

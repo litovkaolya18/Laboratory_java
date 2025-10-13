@@ -116,12 +116,13 @@ public class Main {
                 }
                 case 3: {
                     System.out.println("\nПримеры из условия задачи");
-                    Department department = new Department("IT");
 
+                    Department department = new Department("IT");
                     Employees employees1 = new Employees("Петров", department);
                     Employees employees2 = new Employees("Козлов", department);
                     Employees employees3 = new Employees("Сидоров", department);
 
+                    /* Назначаем начальника */
                     department.setDirector(employees2);
 
                     System.out.print(employees1.toString() + "\n");
@@ -132,51 +133,49 @@ public class Main {
                             "отдела\n");
                     System.out.print(employees1.getDepartmentEmployees());
 
-
-                    scanner.nextLine(); // очистка буфера
-                    String departmentName;
-                    System.out.print("Введите название отдела: ");
-                    departmentName = scanner.nextLine();
+                    /* Ввод названия отдела с проверкой */
+                    String departmentName = validator.getLettersInput("\nВведите своё название отдела: ", true);
                     Department userDep = new Department(departmentName);
 
-                    int count;
-                    System.out.print("\nСколько сотрудников вы хотите создать: ");
-                    count = scanner.nextInt();
+                    /* Ввод количества сотрудников */
+                    int count = validator.getNumInput("\nСколько сотрудников вы хотите создать: ");
                     count = Check.getCheckNum(count);
-                    scanner.nextLine();
 
-                    //создание сотрудников
-                    Employees[] userEmp = new Employees[count];
+                    /* создание сотрудников */
+                    Employees[] userEmployees = new Employees[count];
                     for (int i = 0; i < count; i++) {
                         System.out.print("Сотрудник " + (i + 1) + ": ");
-                        userEmp[i] = new Employees(userDep);
+                        userEmployees[i] = new Employees(userDep);
                     }
 
-                    //создание начальника
-                    System.out.print("Введите номер начальника от 1 до " + count + ": ");
-                    int indexDep = scanner.nextInt();
-                    while (indexDep < 1 || indexDep > count) {
-                        System.out.print("Неверно. Введите номер от 1 до " + count + ": ");
-                        indexDep = scanner.nextInt();
+                    /* создание начальника */
+                    if (count > 0) {
+                        int indexDep = validator.getNumInput("Введите номер начальника от 1 до " + count + ": ");
+                        while (indexDep < 1 || indexDep > count) {
+                            System.out.print("Неверно. Введите номер от 1 до " + count + ": ");
+                            indexDep = scanner.nextInt();
+                        }
+                        userDep.setDirector(userEmployees[indexDep - 1]);
                     }
 
-                    userDep.setDirector(userEmp[indexDep - 1]);
-
+                    /* Вывод полного списка сотрудников */
                     System.out.println("\nПолный список сотрудников: ");
                     for (int i = 0; i < count; i++) {
-                        System.out.println(userEmp[i].toString());
+                        System.out.println(userEmployees[i].toString());
                     }
 
                     //
-                    System.out.print("Введите номер сотрудника, чтобы узнать список его отдела: ");
-                    int viewIndex = scanner.nextInt();
-                    while (viewIndex < 1 || viewIndex > count) {
-                        System.out.print("Неверно. Введите номер от 1 до " + count + ": ");
-                        viewIndex = scanner.nextInt();
-                    }
+                    /* Просмотр списка отдела через конкретного сотрудника */
+                    if (count > 0) {
+                        int viewIndex = validator.getNumInput("Введите номер сотрудника, чтобы узнать список его отдела: ");
+                        while (viewIndex < 1 || viewIndex > count) {
+                            System.out.print("Неверно. Введите номер от 1 до " + count + ": ");
+                            viewIndex = scanner.nextInt();
+                        }
 
-                    System.out.println("\nСписок сотрудников отдела через " + userEmp[viewIndex - 1].getName() + ":");
-                    System.out.println(userEmp[viewIndex - 1].getDepartmentEmployees());
+                        System.out.println("\nСписок сотрудников отдела через " + userEmployees[viewIndex - 1].getName() + ":");
+                        System.out.println(userEmployees[viewIndex - 1].getDepartmentEmployees());
+                    }
                     break;
                 }
                 default:

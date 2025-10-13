@@ -1,13 +1,21 @@
 import java.util.Scanner;
 
 /**
- * Класс для сотрудников
+ * Класс Employee представляет сущность сотрудника.
+ * Сотрудник описывается именем и отделом, в котором работает
  */
 public class Employees {
-    Scanner scanner = new Scanner(System.in);
-    private String name; //отдел
-    private Department department; // начальник
+    /* Отдел */
+    private final String name;
+    /* Начальник */
+    private final Department department;
 
+    /**
+     * Конструктор для создания сотрудника с готовыми данными.
+     *
+     * @param name имя сотрудника
+     * @param department отдел сотрудника
+     */
     public Employees(String name, Department department) {
         this.name = name;
         this.department = department;
@@ -15,9 +23,27 @@ public class Employees {
         department.addEmployee(this);
     }
 
-    // Конструктор для ввода с клавиатуры
+    /**
+     * Конструктор для ввода имени сотрудника с клавиатуры.
+     *
+     * @param department отдел сотрудника
+     */
     public Employees(Department department) {
-        this.name = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        Check validator = new Check();
+
+        //this.name = scanner.nextLine();
+        while (true) {
+            System.out.print("Введите имя сотрудника: ");
+            String inputName = scanner.nextLine().trim();
+            if (inputName.isEmpty() || validator.checkLetters(inputName)) {
+                this.name = inputName;
+                break;
+            } else {
+                System.out.println("Error: имя должно содержать только буквы!");
+            }
+        }
+
         this.department = department;
         //
         department.addEmployee(this);
@@ -31,7 +57,9 @@ public class Employees {
         return department;
     }
 
-    //
+    /**
+     * Возвращает список всех сотрудников отдела.
+     */
     public String getDepartmentEmployees() {
         return department.getAllEmployeesList();
     }
@@ -48,6 +76,4 @@ public class Employees {
                     ", начальник которого " + department.getDirector().getName();
         }
     }
-
-
 }
