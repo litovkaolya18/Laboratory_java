@@ -9,7 +9,7 @@ public class Metod2 {
      * Метод для фильтрации списка с помощью условия
      */
     public static <T> List<T> filter(List<T> inputList, Filter<T> filter) {
-        if(inputList == null || inputList.isEmpty()) {
+        if (inputList == null || inputList.isEmpty()) {
             return new ArrayList<>();
         }
 

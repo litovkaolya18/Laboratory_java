@@ -14,8 +14,11 @@ public class Main {
         while (true) {
             System.out.print("\n" + "Здравствуй! Выбери одно из заданий:\n");
             System.out.print("1 - Обобщенная коробка\n" +
-                    "2 - Начало отсчета\n" +
-                    "3 - Функция\n" +
+                    "2 - Без null\n" +
+                    "3 - Начало отсчета\n" +
+                    "4 - Функция\n" +
+                    "5 - Фильтр\n" +
+                    "6 - Сокращение\n" +
                     "0 - Выход\n");
             number = check.getInt("Введите номер задания: ");
             boolean running = true;
@@ -123,14 +126,42 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    System.out.println("\n---Начало отсчета---\n");
-                    Box<Point> pointBox = new Box<>();
-                    Box<Object> point1Box = new Box<>();
-                    Box.putPoint(pointBox);
-                    Box.putPoint(point1Box);
+                    System.out.println("\n---Без null---");
+                    System.out.println("Примеры из задания:");
+                    // Пример 1: Хранилище чисел с null -> альтернатива 0
+                    Storage<Integer> storage1 = new Storage<>(null, 0);
+                    System.out.println("\n1.Значение хранилища: " + storage1);
+                    processStorage(storage1);
+
+                    // Пример 2: Хранилище чисел с 99 -> альтернатива -1
+                    Storage<Integer> storage2 = new Storage<>(99, -1);
+                    System.out.println("\n2.Значение хранилища: " + storage2);
+                    processStorage(storage2);
+
+                    // Пример 3: Хранилище строк с null -> альтернатива "default"
+                    Storage<String> storage3 = new Storage<>(null, "default");
+                    System.out.println("\n3.Значение хранилища: " + storage3);
+                    processStorage(storage3);
+
+                    // Пример 4: Хранилище строк с "hello" -> альтернатива "hello world"
+                    Storage<String> storage4 = new Storage<>("hello", "hello world");
+                    System.out.println("\n4.Значение хранилища: " + storage4);
+                    processStorage(storage4);
                     break;
                 }
                 case 3: {
+                    System.out.println("\n---Начало отсчета---\n");
+                    Box<Point> pointBox = new Box<>();
+                    Box<Object> objectBox = new Box<>();
+
+                    System.out.println("1. Box<Point>: " + pointBox);
+                    Box.putPoint(pointBox);
+
+                    System.out.println("2. Box<Object>: " + objectBox);
+                    Box.putPoint(objectBox);
+                    break;
+                }
+                case 4: {
                     System.out.println("\n---Функция---");
                     System.out.println("1 - Пример из задания\n" +
                             "2 - Введение своих данных");
@@ -213,6 +244,12 @@ public class Main {
                                         userArrays.add(arr);
                                     }
 
+                                    System.out.print("Исходные массивы: ");
+                                    for (int[] arr : userArrays) {
+                                        System.out.print(Arrays.toString(arr) + " ");
+                                    }
+                                    System.out.println();
+
                                     List<Integer> userMaxValues = Metod1.process(userArrays, value -> Check.findMax(value));
                                     System.out.println("Максимумы пользовательских массивов: " + userMaxValues);
                                     break;
@@ -230,53 +267,92 @@ public class Main {
                     break;
 
                 }
-                case 4: {
-//                    System.out.println("\n---Фильтр---");
-//                    System.out.println("1 - Пример из задания\n" +
-//                            "2 - Введение своих данных");
-//                    int choice = check.getInt("Выберите действие: ");
-//                    case 1: {
-//                        List<String> strings1 = Arrays.asList("qwerty", "asdfg", "zx");
-//                        System.out.println("\nИсходный список строк: " + strings1);
-//                        List<String> strings2 = Filter.filter(strings1,
-//                                value -> value.length() >= 3);
-//                        System.out.println("Строки длиной >= 3 символов: " + strings2);
-//
-//
-//                        List<Integer> num1 = Arrays.asList(1, -3, 7);
-//                        System.out.println("\nИсходный список чисел: " + num1);
-//                        List<Integer> numb2 = Filter.filter(num1,
-//                                value -> value > 0);
-//                        System.out.println("Положительные числа: " + numb2);
-//
-//
-//                        List<int[]> arrays = Arrays.asList(
-//                                new int[]{-1, -2, -3},
-//                                new int[]{-5, 2, -1},
-//                                new int[]{-7, -8, -9}
-//                        );
-//                        System.out.print("\nИсходные массивы: ");
-//                        for (int[] arr : arrays) {
-//                            System.out.print(Arrays.toString(arr) + " ");
-//                        }
-//                        System.out.println();
-//
-//                        List<int[]> negativeArrays = Filter.filter(arrays, value ->
-//                        {
-//                                    for (int num : value) {
-//                                        if (num > 0) return false;
-//                                    }
-//                                    return true;
-//                                });
-//
-//                        System.out.print("Массивы без положительных элементов: ");
-//                        for (int[] arr : negativeArrays) {
-//                            System.out.print(Arrays.toString(arr) + " ");
-//                        }
-//                        System.out.println();
-//                        break;
-//                    }
+                case 5: {
+                    System.out.println("\n---Фильтр---");
 
+                    List<String> strings = Arrays.asList("qwerty", "asdfg", "zx");
+                    System.out.println("1.Исходный список строк: " + strings);
+                    List<String> filterstr = Metod2.filter(strings,
+                            value -> value.length() >= 3);
+                    System.out.println("Строки длиной >= 3 символов: " + filterstr);
+
+
+                    List<Integer> num = Arrays.asList(1, -3, 7);
+                    System.out.println("\n2.Исходный список чисел: " + num);
+                    List<Integer> filternumb = Metod2.filter(num,
+                            value -> value > 0);
+                    System.out.println("Положительные числа: " + filternumb);
+
+
+                    System.out.println("\n3.Массивы без положительных элементов");
+                    int arrayCount = check.getInt("Сколько массивов создать: ");
+                    arrayCount = Check.getCheckNum(arrayCount);
+
+                    List<int[]> userArrays = new ArrayList<>();
+                    for (int i = 0; i < arrayCount; i++) {
+                        int size = check.getInt("Сколько чисел в массиве " + (i + 1) + ": ");
+                        size = Check.getCheckNum(size);
+                        int[] arr = new int[size];
+                        for (int j = 0; j < size; j++) {
+                            arr[j] = check.getInt("Число " + (j + 1) + ": ");
+                        }
+                        userArrays.add(arr);
+                    }
+
+                    System.out.print("Исходные массивы: ");
+                    for (int[] arr : userArrays) {
+                        System.out.print(Arrays.toString(arr) + " ");
+                    }
+                    System.out.println();
+
+                    List<int[]> filteredArrays = Metod2.filter(userArrays, value -> Check.hasNoPositive(value));
+                    System.out.print("Массивы без положительных элементов: ");
+                    for (int[] arr : filteredArrays) {
+                        System.out.print(Arrays.toString(arr) + " ");
+                    }
+                    System.out.println();
+                    break;
+                }
+                case 6: {
+                    System.out.println("\n---Сокращение---");
+
+                    List<String> strings = Arrays.asList("qwerty", "asdfg", "zx");
+                    System.out.println("1.Исходный список строк: " + strings);
+                    String concatenated = Metod3.reduce(strings, "",
+                            (a, b) -> a + b);
+                    System.out.println("Объединенная строка: \"" + concatenated + "\"");
+
+                    List<Integer> numbers = Arrays.asList(1, -3, 7);
+                    System.out.println("\n2.Исходный список чисел: " + numbers);
+                    Integer sum = Metod3.reduce(numbers, 0,
+                            (a, b) -> a + b);
+                    System.out.println("Сумма чисел: " + sum);
+
+
+                    System.out.println("\n3.Общее количество элементов во вложенных списках");
+
+                    int listCount = check.getInt("Сколько списков создать?: ");
+                    listCount = Check.getCheckNum(listCount);
+
+                    List<List<Integer>> nestedLists = new ArrayList<>();
+                    for (int i = 0; i < listCount; i++) {
+                        System.out.println("Список " + (i + 1) + ": ");
+                        int size = check.getInt("Сколько чисел в списке: ");
+                        size = Check.getCheckNum(size);
+
+                        List<Integer> innerList = new ArrayList<>();
+                        for (int j = 0; j < size; j++) {
+                            int num = check.getInt("Число " + (j + 1) + ": ");
+                            innerList.add(num);
+                        }
+                        nestedLists.add(innerList);
+                    }
+
+                    System.out.println("Исходные вложенные списки: " + nestedLists);
+                    List<Integer> sizes = Metod1.process(nestedLists, List::size);
+                    Integer totalCount2 = Metod3.reduce(sizes, 0, Integer::sum);
+                    System.out.println("Общее количество: " + totalCount2);
+                    break;
                 }
                 case 0: {
                     System.out.println("Программа завершена.");
@@ -296,5 +372,17 @@ public class Main {
             System.out.println("Выводим на экран: " + value);
             System.out.println("Коробка после извлечения: " + box);
         }
+    }
+
+    /**
+     * Метод для обработки хранилища (демонстрация передачи в метод)
+     */
+    private static <T> void processStorage(Storage<T> storage) {
+        System.out.println("Передаем хранилище в метод processStorage()...");
+        T value = storage.getValue();
+        System.out.println("Извлекли значение: " + value);
+        System.out.println("Оригинальное значение: " + storage.getOriginalValue());
+        System.out.println("Хранит null? " + storage.isNull());
+        System.out.println("Альтернативное значение: " + storage.getAlternative());
     }
 }

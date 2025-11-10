@@ -8,6 +8,8 @@ public class Storage<T> {
 
     /**
      * Конструктор - объект кладется при создании
+     * @param value хранимое значение (может быть null)
+     * @param alternative альтернативное значение при null
      */
     public Storage(T value, T alternative) {
         this.value = value;
@@ -48,9 +50,9 @@ public class Storage<T> {
     @Override
     public String toString() {
         if (value == null) {
-            return "Storage{null -> alternative: " + alternative + "}";
+            return "Хранилище{null -> альтернатива: " + alternative + "}";
         } else {
-            return "Storage{value: " + value + "}";
+            return "Хранилище{значение: " + value + "}";
         }
     }
 }

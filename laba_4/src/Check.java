@@ -94,6 +94,20 @@ public class Check {
         return num;
     }
 
+    /**
+     * Проверить, что в массиве нет положительных элементов
+     */
+    public static boolean hasNoPositive(int[] array) {
+        if (array == null || array.length == 0) {
+            return false;
+        }
+        for (int num : array) {
+            if (num > 0) return false;
+        }
+        return true;
+    }
+
+
 //    /**
 //     * Получить список чисел от пользователя
 //     */
