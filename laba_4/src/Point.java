@@ -9,22 +9,22 @@ public class Point {
         this.y = y;
         this.z = z;
     }
-
-    public Point() {
-        this(0, 0, 0);
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getZ() {
-        return z;
-    }
+//
+//    public Point() {
+//        this(0, 0, 0);
+//    }
+//
+//    public double getX() {
+//        return x;
+//    }
+//
+//    public double getY() {
+//        return y;
+//    }
+//
+//    public double getZ() {
+//        return z;
+//    }
 
     @Override
     public String toString() {
