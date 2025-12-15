@@ -47,7 +47,7 @@ setDenominator() - установка знаменателя<br>
 4.При последующих вызовах возвращает значение из кэша без пересчета<br>
 5.При изменении дроби через методы setNumerator() или setDenominator() сбрасывает кэш<br>
 <br>
-Примеры:
+<img width="336" height="564" alt="image" src="https://github.com/user-attachments/assets/43293551-3c63-48a6-9f72-b5681e83b543" />
 
 
 <A NAME="chap2"></A>
