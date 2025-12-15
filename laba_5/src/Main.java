@@ -23,9 +23,9 @@ public class Main {
             System.out.print("\n" + "Здравствуй! Выбери одно из заданий:\n");
             System.out.print("1 - Шаблоны. Класс Дробь\n" +
                     "2 - Структурные шаблоны. Количество мяуканий\n" +
-                    "3 - Список. Замена списков\n" +
+                    "3 - Список. Замена списков \n" +
                     "4 - Мап. Автозаправочных станциях (АЗС)\n" +
-                    "5 - \n" +
+                    "5 - Сет. Глухие согласные буквы \n" +
                     "6 - Очередь. Повторяющиеся числа\n" +
                     "0 - Выход\n");
             number = check.getInt("Введите номер задания: ");
@@ -141,16 +141,15 @@ public class Main {
                 case 4: {
                     System.out.println("Определяем, сколько АЗС продают бензин дешевле всего");
                     System.out.println("Данные читаются из файла");
-
-
                     GasStation analyzer = new GasStation();
                     analyzer.analyze();
-
                     break;
                 }
                 case 5: {
-
-                    
+                    System.out.println("\nАнализ текста");
+                    Text filter = new Text ();
+                    filter.analyze();
+                    break;
                 }
                 case 6: {
                     System.out.println("Определяем,  есть ли в очереди хотя бы один элемент, равный следующему (по кругу)");
