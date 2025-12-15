@@ -7,19 +7,18 @@ public class ListChange {
     /**
      * Меняет первое вхождение одного списка в другом
      */
-    public static <T> List<T> change(List<T> list, List<T> find, List<T> replace) {
+    public static <T> List<T> change(List<T> L, List<T> L1, List<T> L2) {
         // Если что-то пустое - ничего не делаем
-        if (list == null || find == null || replace == null) return new ArrayList<>(list);
-        if (find.isEmpty()) return new ArrayList<>(list);
-        if (list.size() < find.size()) return new ArrayList<>(list);
+        if (L1.isEmpty() || L.size() < L1.size())
+            return new ArrayList<>(L);
 
-        // Ищем find в list
-        for (int i = 0; i <= list.size() - find.size(); i++) {
+        // Ищем L1 в L
+        for (int i = 0; i <= L.size() - L1.size(); i++) {
             boolean found = true;
 
             // Проверяем все элементы
-            for (int j = 0; j < find.size(); j++) {
-                if (!list.get(i + j).equals(find.get(j))) {
+            for (int j = 0; j < L1.size(); j++) {
+                if (!L.get(i + j).equals(L1.get(j))) {
                     found = false;
                     break;
                 }
@@ -30,40 +29,20 @@ public class ListChange {
                 List<T> result = new ArrayList<>();
 
                 // Добавляем часть до
-                result.addAll(list.subList(0, i));
+                result.addAll(L.subList(0, i));
                 // Добавляем новый список
-                result.addAll(replace);
+                result.addAll(L2);
                 // Добавляем часть после
-                result.addAll(list.subList(i + find.size(), list.size()));
+                result.addAll(L.subList(i + L1.size(), L.size()));
 
                 return result;
             }
         }
 
         // Если не нашли - возвращаем копию
-        return new ArrayList<>(list);
+        return new ArrayList<>(L);
     }
 
-
-    /**
-     * Проверяет есть ли один список в другом
-     */
-    public static <T> boolean contains(List<T> big, List<T> small) {
-        if (big == null || small == null || small.isEmpty()) return false;
-        if (big.size() < small.size()) return false;
-
-        for (int i = 0; i <= big.size() - small.size(); i++) {
-            boolean found = true;
-            for (int j = 0; j < small.size(); j++) {
-                if (!big.get(i + j).equals(small.get(j))) {
-                    found = false;
-                    break;
-                }
-            }
-            if (found) return true;
-        }
-        return false;
-    }
 
     /**
      * Печатает список красиво
@@ -80,5 +59,4 @@ public class ListChange {
         sb.append("]");
         return sb.toString();
     }
-
 }

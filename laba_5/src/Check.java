@@ -145,14 +145,18 @@ class Check {
         System.out.println("Создан: " + ListChange.print(list));
         return list;
     }
-    /**
-     * ВЫБРАТЬ ТИП ДАННЫХ
-     */
-    public int chooseDataType() {
-        System.out.println("\nВыберите тип данных:");
-        System.out.println("1. Числа");
-        System.out.println("2. Строки");
-        return getInt("Ваш выбор: ");
+
+
+    // Создать список чисел
+    public List<Integer> createList() {
+        List<Integer> list = new ArrayList<>();
+        int n = getInt("Сколько чисел ввести? ");
+
+        for (int i = 0; i < n; i++) {
+            int num = getInt("Число " + (i+1) + ": ");
+            list.add(num);
+        }
+        return list;
     }
 
 

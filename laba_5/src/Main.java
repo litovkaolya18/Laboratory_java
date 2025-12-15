@@ -25,7 +25,7 @@ public class Main {
                     "3 - Список. Замена списков\n" +
                     "4 - Функция\n" +
                     "5 - Фильтр\n" +
-                    "6 - Сокращение\n" +
+                    "6 - Очередь. \n" +
                     "0 - Выход\n");
             number = check.getInt("Введите номер задания: ");
 
@@ -136,6 +136,27 @@ public class Main {
                             break;
                         }
                     }
+                }
+                case 6: {
+                    System.out.println("Определяем,  есть ли в очереди хотя бы один элемент, равный следующему (по кругу)");
+                    QueueCircular queue = new QueueCircular();
+                    int count = check.getInt("\nСколько чисел добавить в очередь? ");
+
+                    if (count < 2) {
+                        System.out.println("ОШИБКА: Для проверки нужно минимум 2 элемента!");
+                        break;
+                    }
+
+                    for (int i = 0; i < count; i++) {
+                        int num = check.getInt("Число " + (i + 1) + ": ");
+                        queue.add(num);
+                    }
+
+                    System.out.println("\nВаша очередь: " + queue);
+                    System.out.println("\nРезультат:");
+                    queue.checkAndPrint();
+
+                    break;
                 }
                 case 0: {
                     System.out.println("Программа завершена.");
