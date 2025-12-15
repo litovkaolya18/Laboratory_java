@@ -15,6 +15,11 @@ class Check {
         this.scanner = new Scanner(System.in);
     }
 
+    // Геттер для scanner
+    public Scanner getScanner() {
+        return scanner;
+    }
+
     // Проверить и получить целое число
     public int getInt(String number) {
         while (true) {

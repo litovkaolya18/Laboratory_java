@@ -4,11 +4,12 @@ import number2.Cat;
 import number2.MeowCounter;
 import number2.Meowable;
 import number3.ListChange;
+import number6.QueueCircular;
 
 import java.lang.*;
 import java.util.*;
 import java.util.Scanner;
-import java.util.ArrayList;
+
 /**
  * Главный класс Main - лабораторная номер 5
  */
@@ -23,9 +24,9 @@ public class Main {
             System.out.print("1 - Шаблоны. Класс Дробь\n" +
                     "2 - Структурные шаблоны. Количество мяуканий\n" +
                     "3 - Список. Замена списков\n" +
-                    "4 - Функция\n" +
-                    "5 - Фильтр\n" +
-                    "6 - Очередь. \n" +
+                    "4 - Мап. Автозаправочных станциях (АЗС)\n" +
+                    "5 - \n" +
+                    "6 - Очередь. Повторяющиеся числа\n" +
                     "0 - Выход\n");
             number = check.getInt("Введите номер задания: ");
 
@@ -136,6 +137,20 @@ public class Main {
                             break;
                         }
                     }
+                }
+                case 4: {
+                    System.out.println("Определяем, сколько АЗС продают бензин дешевле всего");
+                    System.out.println("Данные читаются из файла");
+
+
+                    GasStation analyzer = new GasStation();
+                    analyzer.analyze();
+
+                    break;
+                }
+                case 5: {
+
+                    
                 }
                 case 6: {
                     System.out.println("Определяем,  есть ли в очереди хотя бы один элемент, равный следующему (по кругу)");
